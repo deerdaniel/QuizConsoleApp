@@ -19,6 +19,7 @@ internal class Program
 
                     var quiz = new QuizLogic(@"" + path);
                     Console.WriteLine(quiz.GetQuestionFromFile(1));
+                    Console.WriteLine(quiz.GetQuestionFromFile(2));
                     break;
             }
             Console.ReadLine();
