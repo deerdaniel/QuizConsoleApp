@@ -18,5 +18,16 @@ namespace QuizConsoleApp
                 throw new ArgumentNullException("path");
             _path = path;
         }
+        public bool IsFileExist()
+        {
+            if (File.Exists(_path))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

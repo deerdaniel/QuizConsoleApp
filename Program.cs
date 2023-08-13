@@ -14,39 +14,36 @@ public class Program
             switch (option.KeyChar)
             {
                 case '1':
-                    Console.Write("Enter path of quiz: ");
-                    string path = Console.ReadLine();
-                    Console.Clear();
+                    
                     try
                     {
-                        var quiz = new QuizLoadFromFile(@"" + path);
-
-                        quiz.LoadQuestion();
+                        var quizLoading = (QuizLoadFromFile)_creatingObject();
+                        quizLoading.LoadQuestion();
 
                         ConsoleKeyInfo answer;
                         char correctAnswer;
                         int i = 0;
 
                         //Points counter
-                        while (i < quiz.QuestionsAndAnswers.Count)
+                        while (i < quizLoading.QuestionsAndAnswers.Count)
                         {
-                            Console.WriteLine(quiz.QuestionsAndAnswers[i].Question);
+                            Console.WriteLine(quizLoading.QuestionsAndAnswers[i].Question);
                             answer = Console.ReadKey(true);
-                            correctAnswer = quiz.QuestionsAndAnswers[i].Answer;
+                            correctAnswer = quizLoading.QuestionsAndAnswers[i].Answer;
 
-                            if (!quiz.CheckIfCharCorrect(answer.KeyChar))
+                            if (!quizLoading.CheckIfCharCorrect(answer.KeyChar))
                             {
                                 Console.Clear();
                                 UserInterface.WriteWrongCharacter();
                                 continue;
                             }
 
-                            quiz.CheckAnswer(answer.KeyChar, correctAnswer);
+                            quizLoading.CheckAnswer(answer.KeyChar, correctAnswer);
                             Console.Clear();
                             i++;
                         }
 
-                        UserInterface.WritePoints(quiz);
+                        UserInterface.WritePoints(quizLoading);
                     }
                     catch(ArgumentNullException)
                     {
@@ -59,9 +56,30 @@ public class Program
                     break;
 
                 case '2':
+                    var quizWriting = (QuizWriteInFile)_creatingObject();
 
+                    if (quizWriting.IsFileExist())
+                    {
+                        char userOption = '0';
+                        UserInterface.WriteAskOverwrite();
+                        while ( !(userOption.Equals('1') || userOption.Equals('2')) )
+                        {
+                            userOption = Console.ReadKey().KeyChar;
+                        }
+                        bool userOptionConvertToBool = userOption.Equals('1') ? true : false;
+                        
+                        quizWriting.CreateFile(userOptionConvertToBool);
+                    }
                     break;
             }
         }
+    }
+    private static Quiz _creatingObject()
+    {
+        UserInterface.WriteEnterAsk();
+        string path = Console.ReadLine();
+        var quiz = new Quiz(@"" + path);
+        Console.Clear();
+        return quiz;
     }
 }

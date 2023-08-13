@@ -45,5 +45,9 @@ namespace QuizConsoleApp
             WriteCommunicate(message, "IMPORTANT");
             Console.WriteLine("1. Yes | 2. No");
         }
+        public static void WriteEnterAsk()
+        {
+            Console.Write("Enter path of quiz: ");
+        }
     }
 }

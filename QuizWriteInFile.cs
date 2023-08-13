@@ -15,30 +15,22 @@ namespace QuizConsoleApp
         {
             
         }
-        //Return false when there is no overwrite. If a file is overwrite, the method asks if user want to overwrite or not.
-        public bool IsFileCreated()
+        /// <summary>
+        /// This method create file and return true when param is true; Return false when param is false 
+        /// </summary>
+        public bool CreateFile(bool condition)
         {
-            if (!File.Exists(_path))
+            if (condition)
             {
-                ConsoleKeyInfo option;
-                UserInterface.WriteAskOverwrite();
-                option = Console.ReadKey(true);
-
-                switch (option.KeyChar)
-                {
-                    case '1':
-                        CreateFile();
-                        break;
-
-                    case '2':
-                        
-                        break;
-                }
+                CreateFile();
+                return true;
             }
-            CreateFile();
-            return true;
+            else
+            {
+                return false;
+            }
         }
-        private void CreateFile()
+        public void CreateFile()
         {
             File.Create(_path);
         }
