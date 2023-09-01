@@ -66,7 +66,7 @@ namespace QuizConsoleApp
             }
 
         }
-
+        
         public bool CheckIfCharCorrect(char answer)
         {
             answer = Char.ToLower(answer);

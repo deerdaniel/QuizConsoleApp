@@ -10,6 +10,7 @@ namespace QuizConsoleApp
 {
     public class QuizWriteInFile : Quiz
     {
+        private bool _isFileCreated;
         public QuizWriteInFile(string path) :
             base(path)
         {
@@ -18,11 +19,11 @@ namespace QuizConsoleApp
         /// <summary>
         /// This method create file and return true when param is true; Return false when param is false 
         /// </summary>
-        public bool CreateFile(bool condition)
+        public bool CreateFile(bool condition, string fileName = "Quiz")
         {
             if (condition)
             {
-                CreateFile();
+                CreateFile(fileName);
                 return true;
             }
             else
@@ -30,9 +31,28 @@ namespace QuizConsoleApp
                 return false;
             }
         }
-        public void CreateFile()
+        public void CreateFile(string fileName = "Quiz")
         {
-            File.Create(_path);
+            if (_isFileCreated)
+            {
+                throw new InvalidOperationException("A file was created");
+            }
+            string finalPath = _path + $"{fileName}.txt";
+            File.Create(finalPath);
+            _isFileCreated = true;
+        }
+
+        public void WriteQuestion(string question)
+        {
+            if (!_isFileCreated)
+            {
+                throw new InvalidOperationException("A file wasn't created");
+            }
+            using (var writer = new StreamWriter(_path))
+            {
+                writer.WriteLine();
+            }
+            
         }
     }
 }

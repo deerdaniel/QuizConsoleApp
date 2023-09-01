@@ -11,6 +11,7 @@ namespace QuizConsoleApp
         public static void WriteOptions()
         {
             Console.WriteLine("1. Open a quiz from .txt file.");
+            Console.WriteLine("2. Create a new quiz");
         }
         private static void WriteBackCommunicate(string message, string communicateType)
         {    

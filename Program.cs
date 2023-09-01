@@ -6,7 +6,7 @@ public class Program
         while (true)
         {
             ConsoleKeyInfo option;
-
+            string path;
             UserInterface.WriteOptions();
             option = Console.ReadKey(true);
 
@@ -17,7 +17,11 @@ public class Program
                     
                     try
                     {
-                        var quizLoading = (QuizLoadFromFile)_creatingObject();
+                        UserInterface.WriteEnterAsk();
+                        path = Console.ReadLine();
+                        var quizLoading = new QuizLoadFromFile(@"" + path);
+                        Console.Clear();
+
                         quizLoading.LoadQuestion();
 
                         ConsoleKeyInfo answer;
@@ -56,9 +60,15 @@ public class Program
                     break;
 
                 case '2':
-                    var quizWriting = (QuizWriteInFile)_creatingObject();
+                    UserInterface.WriteEnterAsk();
+                    path = Console.ReadLine();
+                    var quizWriting = new QuizWriteInFile(@"" + path);
+                    Console.Clear();
 
-                    if (quizWriting.IsFileExist())
+                    Console.WriteLine("Enter a file name");
+                    string fileName = Console.ReadLine();
+
+                    if (File.Exists(quizWriting._path))
                     {
                         char userOption = '0';
                         UserInterface.WriteAskOverwrite();
@@ -68,18 +78,14 @@ public class Program
                         }
                         bool userOptionConvertToBool = userOption.Equals('1') ? true : false;
                         
-                        quizWriting.CreateFile(userOptionConvertToBool);
+                        quizWriting.CreateFile(userOptionConvertToBool, fileName);
+                    }
+                    else
+                    {
+                        quizWriting.CreateFile(fileName);
                     }
                     break;
             }
         }
-    }
-    private static Quiz _creatingObject()
-    {
-        UserInterface.WriteEnterAsk();
-        string path = Console.ReadLine();
-        var quiz = new Quiz(@"" + path);
-        Console.Clear();
-        return quiz;
     }
 }
