@@ -13,3 +13,5 @@ C:\Users\Nauka\Documents\csh_projects\QuizConsoleApp\obj\Debug\net6.0\refint\Qui
 C:\Users\Nauka\Documents\csh_projects\QuizConsoleApp\obj\Debug\net6.0\QuizConsoleApp.pdb
 C:\Users\Nauka\Documents\csh_projects\QuizConsoleApp\obj\Debug\net6.0\QuizConsoleApp.genruntimeconfig.cache
 C:\Users\Nauka\Documents\csh_projects\QuizConsoleApp\obj\Debug\net6.0\ref\QuizConsoleApp.dll
+C:\Users\Nauka\Documents\csh_projects\QuizConsoleApp\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Nauka\Documents\csh_projects\QuizConsoleApp\obj\Debug\net6.0\QuizConsoleApp.csproj.CopyComplete

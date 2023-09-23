@@ -17,5 +17,6 @@ namespace QuizConsoleApp
                 throw new ArgumentNullException("path");
             _path = path;
         }
+        public Quiz() { }  
     }
 }

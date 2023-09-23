@@ -8,51 +8,65 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace QuizConsoleApp
 {
-    public class QuizWriteInFile : Quiz
+    public class QuizWriteInFile
     {
-        private bool _isFileCreated;
-        public QuizWriteInFile(string path) :
-            base(path)
+        public static readonly string BinPath = Directory.GetCurrentDirectory() + @"\Quiz";
+        public readonly string FilePath;
+        public int QuestionNumber { get; private set; }
+        public QuizWriteInFile(string nameFile)
         {
-            
+            QuestionNumber = 1;
+            FilePath = System.IO.Path.Combine(BinPath, nameFile + ".txt");
         }
         /// <summary>
         /// This method create file and return true when param is true; Return false when param is false 
         /// </summary>
-        public bool CreateFile(bool condition, string fileName = "Quiz")
+        public void CreateFile()
         {
-            if (condition)
-            {
-                CreateFile(fileName);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public void CreateFile(string fileName = "Quiz")
-        {
-            if (_isFileCreated)
-            {
-                throw new InvalidOperationException("A file was created");
-            }
-            string finalPath = _path + $"{fileName}.txt";
-            File.Create(finalPath);
-            _isFileCreated = true;
+            string finalPath = FilePath;
+            File.Create(finalPath).Dispose();
         }
 
         public void WriteQuestion(string question)
         {
-            if (!_isFileCreated)
+            string writeIn = $"[QUESTION]\n" + question;
+            ExistsFile();
+            _writeInFile(writeIn);
+            QuestionNumber++;
+            
+        }
+        public void WriteAnswer(string answer)
+        {
+            ExistsFile();
+            if (answer[0].Equals('d'))
+            {
+                answer += ";";
+            }
+            _writeInFile(answer);
+        }
+        public void WriteCorrectAnswer(char correctAnswer)
+        {
+            if (!UserProfile.CheckCharCorrection(correctAnswer))
+            {
+                throw new ArgumentException("Only correct char is: a, b, c or d.", correctAnswer.ToString());
+            }
+            ExistsFile();
+            _writeInFile(correctAnswer.ToString());
+        }
+        private void _writeInFile(string message)
+        {
+            using (var writer = new StreamWriter(FilePath, true))
+            {
+                writer.WriteLine(message);
+            }
+        }
+        private void ExistsFile()
+        {
+            if (!File.Exists(FilePath))
             {
                 throw new InvalidOperationException("A file wasn't created");
             }
-            using (var writer = new StreamWriter(_path))
-            {
-                writer.WriteLine();
-            }
-            
         }
+
     }
 }

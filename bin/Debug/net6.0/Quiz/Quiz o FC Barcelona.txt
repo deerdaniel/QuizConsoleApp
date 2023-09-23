@@ -1,0 +1,35 @@
+[QUESTION]
+Kiedy zostal zalozony klub FC Barcelona?
+a. 1990
+b. 1900
+c. 1899
+d. 1890;
+c
+[QUESTION]
+Najlepszy zawodnik w historii Barcelony z numerem 10
+a. Lionel Messi
+b. Pele
+c. Ronaldo
+d. Dembele;
+a
+[QUESTION]
+Najgoretszy rywal FC Barcelony?
+a. Sevilla
+b. Real Madryt
+c. Girona
+d. Bayern;
+b
+[QUESTION]
+Który z zawodników odszedl z klubu za 222mln euro?
+a. Messi
+b. Pep Guardiola
+c. Neymar Jr.
+d. Ter Stegen;
+c
+[QUESTION]
+Z jakim wynikiem skonczylo sie spotkanie Barcelony pomiedzy Lechia Gdansk?
+a. 5:0
+b. 3:1
+c. 2:2
+d. 1:1;
+d

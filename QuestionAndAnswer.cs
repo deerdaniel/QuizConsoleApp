@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace QuizConsoleApp
 {
-    public struct QuestionAndAnswer
+    public class QuestionAndAnswer
     {
-        public StringBuilder Question { get; set; }
-        public char Answer { get; set;}
+        public StringBuilder Content { get; set; }
+        public char CorrectAnswer { get; set;}
 
         public QuestionAndAnswer()
         {
-            Question = new StringBuilder();
-            Answer = new char();
+            Content = new StringBuilder();
         }
     }
 }
